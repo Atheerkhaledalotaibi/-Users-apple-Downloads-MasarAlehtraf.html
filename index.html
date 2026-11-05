@@ -1860,7 +1860,7 @@
         </a>
     </div>
 
-    <script>
+   <script>
         document.documentElement.classList.remove('js-ready');
 
         // icon library for services (line icons)
@@ -1934,41 +1934,41 @@
     <h3>${s.t}</h3><p>${s.d}</p>
   </div>`).join('');
 
-        // portfolio data (FIXED: Cleaned local drive pathways to secure your site script execution)
+        // portfolio data
         const projects = [{
-            img: 'WhatsApp Image 2026-09-07 at 10.32.19 PM.jpeg',
+            img: 'file:///Users/apple/Downloads/WhatsApp%20Image%202026-09-07%20at%2010.32.19%20PM.jpeg',
             cat: 'سكني',
             t: 'فيلا سكنية — حي الشرائع'
         }, {
-            img: '3++.png',
+            img: 'file:///Users/apple/Downloads/3++.png',
             cat: 'تجاري',
             t: 'مجمع تجاري — مكة المكرمة'
         }, {
-            img: '12.jpeg',
+            img: 'file:///Users/apple/Downloads/12.jpeg',
             cat: 'داخلي',
             t: 'تصميم داخلي مطبخ — شقة عائلية'
         }, {
-            img: '3.png',
+            img: 'file:///Users/apple/Downloads/3.png',
             cat: 'سكني',
             t: 'فلل سكنية — الخضراء'
         }, {
-            img: 'WhatsApp Image 2026-09-07 at 6.00.50 PM.jpeg',
+            img: 'file:///Users/apple/Downloads/WhatsApp%20Image%202026-09-07%20at%206.00.50%20PM.jpeg',
             cat: 'تجاري',
             t: 'مبنى تجاري — مكة المكرمة'
         }, {
-            img: '7.jpeg',
+            img: 'file:///Users/apple/Downloads/7.jpeg',
             cat: 'داخلي',
             t: 'تصميم داخلي غرفة المعيشة— شقة عائلية'
         }, {
-            img: '2++.png',
+            img: 'file:///Users/apple/Downloads/2++.png',
             cat: 'تجاري',
             t: 'مبنى تجاري — مكة المكرمة'
         }, {
-            img: 'WhatsApp Image 2026-09-07 at 10.48.25 PM.jpeg',
+            img: 'file:///Users/apple/Downloads/WhatsApp%20Image%202026-09-07%20at%2010.48.25%20PM.jpeg',
             cat: 'تجاري',
             t: 'مبنى تجاري — جدة'
         }, {
-            img: 'WhatsApp Image 2026-09-07 at 11.39.05 PM.jpeg',
+            img: 'file:///Users/apple/Downloads/WhatsApp%20Image%202026-09-07%20at%2011.39.05%20PM.jpeg',
             cat: 'اشراف',
             t: 'إشراف تنفيذ — مشروع سكني'
         }];
@@ -1986,39 +1986,6 @@
                 document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 renderPF(btn.dataset.filter);
-            });
-        });
-
-        // faq data
-        const faqs = [{
-            q: 'كم يستغرق إصدار الرخصة الهندسية؟',
-            a: 'تختلف المدة حسب نوع المشروع واكتمال المستندات، وعادة ما تتراوح بين أسبوعين إلى شهر بعد استكمال الدراسات المطلوبة.'
-        }, {
-            q: 'هل تغطون مشاريع خارج مكة المكرمة؟',
-            a: 'نعمل بشكل أساسي في مكة المكرمة والمناطق المجاورة، ويمكن دراسة المشاريع خارج النطاق حسب طبيعة العمل.'
-        }, {
-            q: 'هل يمكنكم إدارة المشروع من الفكرة حتى التسليم؟',
-            a: 'نعم، نقدّم إدارة متكاملة تشمل التصميم والترخيص والإشراف حتى التسليم النهائي الموثّق.'
-        }, {
-            q: 'كيف يتم تقدير تكلفة المشروع؟',
-            a: 'يتم تقدير التكلفة بعد دراسة أولية لمتطلبات المشروع ومساحته ونوع الخدمات المطلوبة، ونزودك بعرض مفصل قبل البدء.'
-        }, {
-            q: 'هل يلزم استخراج رخصة قبل البدء بالتنفيذ؟',
-            a: 'نعم، استخراج الرخصة الهندسية شرط أساسي قبل أي تنفيذ ميداني لضمان مطابقة المشروع للأنظمة المعتمدة.'
-        }];
-        document.getElementById('faqWrap').innerHTML = faqs.map((f, i) => `
-  <div class="faq-item" data-i="${i}">
-    <button class="faq-q"><span>${f.q}</span><span class="plus"></span></button>
-    <div class="faq-a"><div class="faq-a-inner">${f.a}</div></div>
-  </div>`).join('');
-        
-        // This continues your native FAQ script selection logic securely
-        document.querySelectorAll('.faq-item').forEach(item => {
-            const q = item.querySelector('.faq-q');
-            q.addEventListener('click', () => {
-                const active = item.classList.contains('active');
-                document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('active'));
-                if(!active) item.classList.add('active');
             });
         });
 
@@ -2102,6 +2069,7 @@
             document.documentElement.classList.add('js-ready');
             document.querySelectorAll('.reveal').forEach(el => el.classList.add('in-view'));
         }, 1200);
+  
 // WHATSAPP SUBMISSION ENGINE (Consolidated inside your script to
 function sendToWhatsApp(event) {
     event.preventDefault(); // Stops page from reloading
