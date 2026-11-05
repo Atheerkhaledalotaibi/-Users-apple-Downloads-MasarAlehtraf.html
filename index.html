@@ -2092,7 +2092,7 @@ function sendToWhatsApp(event) {
 
     // Generate link and open window
     const whatsappUrl = `https://whatsapp.com{businessNumber}&text=${message}`;
-    window.open(whatsappUrl, '_blank');
+    window.location.href = whatsappUrl;
 }
     </script>
 </body>
