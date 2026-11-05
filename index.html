@@ -1769,30 +1769,36 @@
                 </div>
             </div>
 
-            <form class="form-card reveal" onsubmit="return false;">
-                <div class="form-row">
-                    <div class="field"><label>الاسم الكامل</label><input type="text" placeholder="اكتب اسمك" required></div>
-                    <div class="field"><label>رقم الجوال</label><input type="tel" placeholder="05xxxxxxxx" required></div>
-                </div>
-                <div class="form-row">
-                    <div class="field full">
-                        <label>نوع الخدمة المطلوبة</label>
-                        <select required>
-            <option value="">اختر الخدمة</option>
-            <option>التصميم الهندسي</option>
-            <option>الإشراف الهندسي</option>
-            <option>رخص البناء</option>
-            <option>إدارة المشاريع</option>
-            <option>استشارة عامة</option>
-          </select>
-                    </div>
-                </div>
-                <div class="field full" style="margin-bottom:22px;">
-                    <label>تفاصيل المشروع</label>
-                    <textarea placeholder="أخبرنا بإيجاز عن مشروعك"></textarea>
-                </div>
-                <button class="btn btn-primary" type="submit">إرسال طلب الاستشارة</button>
-            </form>
+           <form class="form-card reveal" onsubmit="sendToWhatsApp(event)">
+    <div class="form-row">
+        <div class="field">
+            <label>الاسم الكامل</label>
+            <input type="text" id="fullName" placeholder="اكتب اسمك" required>
+        </div>
+        <div class="field">
+            <label>رقم الجوال</label>
+            <input type="tel" id="phoneNumber" placeholder="05xxxxxxxx" required>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="field full">
+            <label>نوع الخدمة المطلوبة</label>
+            <select id="serviceType" required>
+                <option value="">اختر الخدمة</option>
+                <option>التصميم الهندسي</option>
+                <option>الإشراف الهندسي</option>
+                <option>رخص البناء</option>
+                <option>إدارة المشاريع</option>
+                <option>استشارة عامة</option>
+            </select>
+        </div>
+    </div>
+    <div class="field full" style="margin-bottom:22px;">
+        <label>تفاصيل المشروع</label>
+        <textarea id="projectDetails" placeholder="أخبرنا بإيجاز عن مشروعك"></textarea>
+    </div>
+    <button class="btn btn-primary" type="submit">إرسال طلب الاستشارة</button>
+</form>
         </div>
     </section>
 
@@ -2063,6 +2069,30 @@
             document.documentElement.classList.add('js-ready');
             document.querySelectorAll('.reveal').forEach(el => el.classList.add('in-view'));
         }, 1200);
+
+function sendToWhatsApp(event) {
+    event.preventDefault(); // Stops page from reloading
+
+    // Enter your exact business WhatsApp number (Country code first, no spaces or + signs)
+    const businessNumber = "966555673382"; 
+
+    // Extract values using the new unique IDs
+    const name = document.getElementById("fullName").value;
+    const phone = document.getElementById("phoneNumber").value;
+    const service = document.getElementById("serviceType").value;
+    const details = document.getElementById("projectDetails").value || "لا توجد تفاصيل إضافية";
+
+    // Format the readable text message with clean spacing
+    const message = `طلب استشارة جديد عبر الموقع:%0A%0A` +
+                    `👤 *الاسم:* ${encodeURIComponent(name)}%0A` +
+                    `📞 *رقم الجوال:* ${encodeURIComponent(phone)}%0A` +
+                    `🛠️ *نوع الخدمة:* ${encodeURIComponent(service)}%0A` +
+                    `📝 *تفاصيل المشروع:* ${encodeURIComponent(details)}`;
+
+    // Generate link and open window
+    const whatsappUrl = `https://whatsapp.com{businessNumber}&text=${message}`;
+    window.open(whatsappUrl, '_blank');
+}
     </script>
 </body>
 
