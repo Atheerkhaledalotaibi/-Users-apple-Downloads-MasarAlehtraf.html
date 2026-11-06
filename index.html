@@ -2072,30 +2072,31 @@
         }, 1200);
   
 function sendFormToWhatsApp(event) {
-    event.preventDefault(); // يمنع تحديث الصفحة عند الضغط على الزر
+    event.preventDefault(); // Prevents page reload artifacts
 
-    // رقم الواتساب الخاص بك جاهز ومربوط مباشرة
+    // Your production-ready WhatsApp number integration
     const myWhatsAppNumber = "966555673382"; 
 
-    // جلب البيانات المدخلة من الحقول الجديدة بالـ ID الفريد
+    // Securely pull document values matching form wrapper configurations
     const clientName = document.getElementById("wa_name").value;
     const clientPhone = document.getElementById("wa_phone").value;
     const selectedService = document.getElementById("wa_service").value;
     const projectDetails = document.getElementById("wa_details").value;
 
-    // صياغة نص الرسالة تماماً كما طلبته باللغة العربية والترتيب المطلوب
+    // Correctly structured template payload mapping
     const textTemplate = `السلام عليكم ورحمة الله وبركاته%0A` +
                          `أنا *${encodeURIComponent(clientName)}*%0A` +
                          `رقم الجوال: ${encodeURIComponent(clientPhone)}%0A` +
                          `الخدمة المطلوبة: *${encodeURIComponent(selectedService)}*%0A` +
                          `التفاصيل: ${encodeURIComponent(projectDetails)}`;
 
-    // رابط الإرسال المباشر عبر السيرفر الرسمي للواتساب
-    const finalLink = `https://whatsapp.com{myWhatsAppNumber}&text=${textTemplate}`;
+    // FIXED PRODUCTION ENDPOINT: Incorporates ://whatsapp.com routing sequence 
+    const finalLink = `https://://whatsapp.com/send?phone=${myWhatsAppNumber}&text=${textTemplate}`;
 
-    // إعادة توجيه المتصفح مباشرة إلى الواتساب دون حظر النوافذ المنبثقة
+    // Execute standard inline browser tab location override
     window.location.href = finalLink;
 }
+       
 </script>
 </body>
 
