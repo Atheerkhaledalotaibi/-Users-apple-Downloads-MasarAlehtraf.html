@@ -1769,21 +1769,21 @@
                 </div>
             </div>
 
-           <form class="form-card reveal" onsubmit="sendToWhatsAppV2(event)">
+           <form class="form-card reveal" onsubmit="sendFormToWhatsApp(event)" autocomplete="off">
     <div class="form-row">
         <div class="field">
             <label>الاسم الكامل</label>
-            <input type="text" id="fullName" placeholder="اكتب اسمك" required>
+            <input type="text" id="wa_name" placeholder="اكتب اسمك" required>
         </div>
         <div class="field">
             <label>رقم الجوال</label>
-            <input type="tel" id="phoneNumber" placeholder="05xxxxxxxx" required>
+            <input type="tel" id="wa_phone" placeholder="05xxxxxxxx" required>
         </div>
     </div>
     <div class="form-row">
         <div class="field full">
             <label>نوع الخدمة المطلوبة</label>
-            <select id="serviceType" required>
+            <select id="wa_service" required>
                 <option value="">اختر الخدمة</option>
                 <option>التصميم الهندسي</option>
                 <option>الإشراف الهندسي</option>
@@ -1793,12 +1793,13 @@
             </select>
         </div>
     </div>
-    <div class="field full" style="margin-bottom:22px;"
+    <div class="field full" style="margin-bottom:22px;">
         <label>تفاصيل المشروع</label>
-        <textarea id="projectDetails" placeholder="أخبرنا بإيجاز عن مشروعك"></textarea>
+        <textarea id="wa_details" placeholder="أخبرنا بإيجاز عن مشروعك" required></textarea>
     </div>
     <button class="btn btn-primary" type="submit">إرسال طلب الاستشارة</button>
 </form>
+            
         </div>
     </section>
 
@@ -2070,32 +2071,32 @@
             document.querySelectorAll('.reveal').forEach(el => el.classList.add('in-view'));
         }, 1200);
   
-function sendToWhatsAppV2(event) {
-    event.preventDefault(); // Stops page from reloading
+function sendFormToWhatsApp(event) {
+    event.preventDefault(); // يمنع تحديث الصفحة عند الضغط على الزر
 
-    // Your exact business WhatsApp number
-    const businessNumber = "966555673382"; 
+    // رقم الواتساب الخاص بك جاهز ومربوط مباشرة
+    const myWhatsAppNumber = "966555673382"; 
 
-    // Extract values using the precise unique IDs
-    const name = document.getElementById("fullName").value;
-    const phone = document.getElementById("phoneNumber").value;
-    const service = document.getElementById("serviceType").value;
-    const details = document.getElementById("projectDetails").value || "لا توجد تفاصيل إضافية";
+    // جلب البيانات المدخلة من الحقول الجديدة بالـ ID الفريد
+    const clientName = document.getElementById("wa_name").value;
+    const clientPhone = document.getElementById("wa_phone").value;
+    const selectedService = document.getElementById("wa_service").value;
+    const projectDetails = document.getElementById("wa_details").value;
 
-    // Format the readable text message with clean spacing
-    const message = `طلب استشارة جديد عبر الموقع:%0A%0A` +
-                    `👤 *الاسم:* ${encodeURIComponent(name)}%0A` +
-                    `📞 *رقم الجوال:* ${encodeURIComponent(phone)}%0A` +
-                    `🛠️ *نوع الخدمة:* ${encodeURIComponent(service)}%0A` +
-                    `📝 *تفاصيل المشروع:* ${encodeURIComponent(details)}`;
+    // صياغة نص الرسالة تماماً كما طلبته باللغة العربية والترتيب المطلوب
+    const textTemplate = `السلام عليكم ورحمة الله وبركاته%0A` +
+                         `أنا *${encodeURIComponent(clientName)}*%0A` +
+                         `رقم الجوال: ${encodeURIComponent(clientPhone)}%0A` +
+                         `الخدمة المطلوبة: *${encodeURIComponent(selectedService)}*%0A` +
+                         `التفاصيل: ${encodeURIComponent(projectDetails)}`;
 
-    // FIXED URL STRUCTURE WITH BACKTICKS:
-    const whatsappUrl = `https://whatsapp.com{businessNumber}&text=${message}`;
-    
-    // Redirects the current tab directly
-    window.location.href = whatsappUrl;
+    // رابط الإرسال المباشر عبر السيرفر الرسمي للواتساب
+    const finalLink = `https://whatsapp.com{myWhatsAppNumber}&text=${textTemplate}`;
+
+    // إعادة توجيه المتصفح مباشرة إلى الواتساب دون حظر النوافذ المنبثقة
+    window.location.href = finalLink;
 }
-    </script>
+</script>
 </body>
 
 </html>
