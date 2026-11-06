@@ -2091,7 +2091,7 @@ function sendFormToWhatsApp(event) {
                          `التفاصيل: ${encodeURIComponent(projectDetails)}`;
 
     // تركيب الرابط ديناميكيًا باستخدام علامة الدولار $ لاستدعاء رقم الهاتف الفعلي بداخل المتغير
-    const finalLink = `https://wa.me{myWhatsAppNumber}?text=${textTemplate}`;
+  const finalLink = `https://wa.me{myWhatsAppNumber}?text=${textTemplate}`;
 
     // توجيه المتصفح للرابط الجديد فورًا
     window.location.href = finalLink;
