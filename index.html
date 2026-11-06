@@ -2072,26 +2072,31 @@
         }, 1200);
   
 function sendFormToWhatsApp(event) {
-    event.preventDefault(); 
+    event.preventDefault(); // يمنع تحديث الصفحة
 
+    // المتغير النصي لرقم الهاتف الخاص بك (بدون أقواس وبدون علامات زائد)
     const myWhatsAppNumber = "966555673382"; 
 
+    // جلب البيانات من الحقول المحددة في النموذج
     const clientName = document.getElementById("wa_name").value;
     const clientPhone = document.getElementById("wa_phone").value;
     const selectedService = document.getElementById("wa_service").value;
     const projectDetails = document.getElementById("wa_details").value;
 
+    // صياغة نص الرسالة والتنسيق المطلوبة باللغة العربية
     const textTemplate = `السلام عليكم ورحمة الله وبركاته%0A` +
                          `أنا *${encodeURIComponent(clientName)}*%0A` +
                          `رقم الجوال: ${encodeURIComponent(clientPhone)}%0A` +
                          `الخدمة المطلوبة: *${encodeURIComponent(selectedService)}*%0A` +
                          `التفاصيل: ${encodeURIComponent(projectDetails)}`;
 
-    // This uses the exact short link format that WhatsApp's official generator outputs!
+    // تركيب الرابط ديناميكيًا باستخدام علامة الدولار $ لاستدعاء رقم الهاتف الفعلي بداخل المتغير
     const finalLink = `https://wa.me{myWhatsAppNumber}?text=${textTemplate}`;
 
+    // توجيه المتصفح للرابط الجديد فورًا
     window.location.href = finalLink;
 }
+
        
 </script>
 </body>
