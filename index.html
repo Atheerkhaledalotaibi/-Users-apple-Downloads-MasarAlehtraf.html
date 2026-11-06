@@ -1769,7 +1769,7 @@
                 </div>
             </div>
 
-           <form class="form-card reveal" onsubmit="sendToWhatsApp(event)">
+           <form class="form-card reveal" onsubmit="sendToWhatsAppV2(event)">
     <div class="form-row">
         <div class="field">
             <label>الاسم الكامل</label>
@@ -2070,7 +2070,7 @@
             document.querySelectorAll('.reveal').forEach(el => el.classList.add('in-view'));
         }, 1200);
   
-function sendToWhatsApp(event) {
+function sendToWhatsAppV2(event) {
     event.preventDefault(); // Stops page from reloading
 
     // Your exact business WhatsApp number
