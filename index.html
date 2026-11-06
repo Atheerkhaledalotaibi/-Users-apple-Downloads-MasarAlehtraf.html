@@ -2072,28 +2072,24 @@
         }, 1200);
   
 function sendFormToWhatsApp(event) {
-    event.preventDefault(); // Prevents page reload artifacts
+    event.preventDefault(); 
 
-    // Your production-ready WhatsApp number integration
     const myWhatsAppNumber = "966555673382"; 
 
-    // Securely pull document values matching form wrapper configurations
     const clientName = document.getElementById("wa_name").value;
     const clientPhone = document.getElementById("wa_phone").value;
     const selectedService = document.getElementById("wa_service").value;
     const projectDetails = document.getElementById("wa_details").value;
 
-    // Correctly structured template payload mapping
     const textTemplate = `السلام عليكم ورحمة الله وبركاته%0A` +
                          `أنا *${encodeURIComponent(clientName)}*%0A` +
                          `رقم الجوال: ${encodeURIComponent(clientPhone)}%0A` +
                          `الخدمة المطلوبة: *${encodeURIComponent(selectedService)}*%0A` +
                          `التفاصيل: ${encodeURIComponent(projectDetails)}`;
 
-    // FIXED PRODUCTION ENDPOINT: Incorporates ://whatsapp.com routing sequence 
-    const finalLink = `https://://whatsapp.com/send?phone=${myWhatsAppNumber}&text=${textTemplate}`;
+    // This uses the exact short link format that WhatsApp's official generator outputs!
+    const finalLink = `https://wa.me{myWhatsAppNumber}?text=${textTemplate}`;
 
-    // Execute standard inline browser tab location override
     window.location.href = finalLink;
 }
        
